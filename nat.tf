@@ -1,13 +1,23 @@
 # NAT Gateway
 resource "aws_eip" "natgw" {
   vpc = true
-  tags = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-natgw-eip"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 resource "aws_nat_gateway" "default" {
   allocation_id = "${aws_eip.natgw.id}"
   subnet_id     = "${aws_subnet.public.0.id}"
-  tags          = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-natgw"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 resource "aws_route" "natgw" {

@@ -1,24 +1,24 @@
-module "label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.3.3"
-  namespace  = "${var.namespace}"
-  name       = "${var.name}"
-  stage      = "${var.stage}"
-  delimiter  = "${var.delimiter}"
-  attributes = "${var.attributes}"
-  tags       = "${var.tags}"
-}
-
 resource "aws_vpc" "main" {
   cidr_block           = "${var.vpc_cidr_range}"
   enable_dns_hostnames = true
   enable_dns_support   = true
-  tags                 = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-main-vpc"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 resource "aws_vpc_dhcp_options" "main" {
   domain_name         = "${var.domain_suffix}"
   domain_name_servers = ["AmazonProvidedDNS"]
-  tags                = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-dhcp-options"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 resource "aws_vpc_dhcp_options_association" "main" {
@@ -33,7 +33,12 @@ resource "aws_subnet" "public" {
   cidr_block              = "${element(var.public_subnet_cidrs, count.index)}"
   availability_zone       = "${element(var.availability_zones, count.index)}"
   map_public_ip_on_launch = true
-  tags                    = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-public-${var.availability_zones[count.index]}"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 
   lifecycle {
     create_before_destroy = true
@@ -47,7 +52,12 @@ resource "aws_subnet" "private" {
   cidr_block              = "${element(var.private_subnet_cidrs, count.index)}"
   availability_zone       = "${element(var.availability_zones, count.index)}"
   map_public_ip_on_launch = false
-  tags                    = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-private-${var.availability_zones[count.index]}"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 
   lifecycle {
     create_before_destroy = true
@@ -61,7 +71,12 @@ resource "aws_subnet" "database" {
   cidr_block              = "${element(var.database_subnet_cidrs, count.index)}"
   availability_zone       = "${element(var.availability_zones, count.index)}"
   map_public_ip_on_launch = false
-  tags                    = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-database-${var.availability_zones[count.index]}"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 
   lifecycle {
     create_before_destroy = true
