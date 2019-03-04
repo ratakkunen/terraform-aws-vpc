@@ -1,6 +1,6 @@
 resource "aws_security_group" "rds_server" {
   vpc_id      = "${aws_vpc.main.id}"
-  name_prefix = "${var.environment_name}_rds_server_"
+  name_prefix = "${var.namespace}-${var.environment_name}-rds-server-"
 
   tags {
     name         = "${var.namespace}-${var.environment_name}-rds-server"
@@ -11,7 +11,7 @@ resource "aws_security_group" "rds_server" {
 
 resource "aws_security_group" "rds_client" {
   vpc_id      = "${aws_vpc.main.id}"
-  name_prefix = "${var.environment_name}_rds_client_"
+  name_prefix = "${var.namespace}-${var.environment_name}-rds-client-"
 
   tags {
     name         = "${var.namespace}-${var.environment_name}-rds-client"
