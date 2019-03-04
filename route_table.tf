@@ -1,19 +1,34 @@
 # Public route table
 resource "aws_route_table" "public" {
   vpc_id = "${aws_vpc.main.id}"
-  tags   = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-public-route-table"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 # Private route table
 resource "aws_route_table" "private" {
   vpc_id = "${aws_vpc.main.id}"
-  tags   = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-private-route-table"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 # Database route table
 resource "aws_route_table" "database" {
   vpc_id = "${aws_vpc.main.id}"
-  tags   = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-database-route-table"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 # Public route table association
@@ -46,7 +61,12 @@ resource "aws_main_route_table_association" "default" {
 # Internet gateway
 resource "aws_internet_gateway" "default" {
   vpc_id = "${aws_vpc.main.id}"
-  tags   = "${module.label.tags}"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-internet-gateway"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 # IGW route for public route table

@@ -1,13 +1,23 @@
 resource "aws_security_group" "rds_server" {
   vpc_id      = "${aws_vpc.main.id}"
-  name_prefix = "${var.environment_name}_rds_server_"
-  tags        = "${module.label.tags}"
+  name_prefix = "${var.namespace}-${var.environment_name}-rds-server-"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-rds-server"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 resource "aws_security_group" "rds_client" {
   vpc_id      = "${aws_vpc.main.id}"
-  name_prefix = "${var.environment_name}_rds_client_"
-  tags        = "${module.label.tags}"
+  name_prefix = "${var.namespace}-${var.environment_name}-rds-client-"
+
+  tags {
+    name         = "${var.namespace}-${var.environment_name}-rds-client"
+    namespace    = "${var.namespace}"
+    stage        = "${var.environment_name}"
+  }
 }
 
 resource "aws_security_group_rule" "allow_from_client" {
