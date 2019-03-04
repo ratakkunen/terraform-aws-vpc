@@ -1,29 +1,19 @@
-module "route_table_label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.3.3"
-  namespace  = "${var.namespace}"
-  name       = "${var.name}"
-  stage      = "${var.stage}"
-  delimiter  = "${var.delimiter}"
-  attributes = "${var.attributes}"
-  tags       = "${var.tags}"
-}
-
 # Public route table
 resource "aws_route_table" "public" {
   vpc_id = "${aws_vpc.main.id}"
-  tags   = "${module.route_table_label.tags}"
+  tags   = "${module.label.tags}"
 }
 
 # Private route table
 resource "aws_route_table" "private" {
   vpc_id = "${aws_vpc.main.id}"
-  tags   = "${module.route_table_label.tags}"
+  tags   = "${module.label.tags}"
 }
 
 # Database route table
 resource "aws_route_table" "database" {
   vpc_id = "${aws_vpc.main.id}"
-  tags   = "${module.route_table_label.tags}"
+  tags   = "${module.label.tags}"
 }
 
 # Public route table association
@@ -56,7 +46,7 @@ resource "aws_main_route_table_association" "default" {
 # Internet gateway
 resource "aws_internet_gateway" "default" {
   vpc_id = "${aws_vpc.main.id}"
-  tags   = "${module.route_table_label.tags}"
+  tags   = "${module.label.tags}"
 }
 
 # IGW route for public route table
