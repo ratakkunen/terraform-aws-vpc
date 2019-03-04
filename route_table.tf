@@ -76,8 +76,3 @@ resource "aws_route" "igw_ipv4" {
   gateway_id             = "${aws_internet_gateway.default.id}"
   depends_on             = ["aws_route_table.public", "aws_internet_gateway.default"]
 }
-
-# Default route table, adopt it but dont do anything with it
-resource "aws_default_route_table" "default" {
-  default_route_table_id = "${aws_vpc.main.default_route_table_id}"
-}
