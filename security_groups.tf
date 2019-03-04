@@ -1,4 +1,4 @@
-module "label" {
+module "security_group_label" {
   source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.3.3"
   namespace  = "${var.namespace}"
   name       = "${var.name}"
@@ -11,13 +11,13 @@ module "label" {
 resource "aws_security_group" "rds_server" {
   vpc_id      = "${aws_vpc.main.id}"
   name_prefix = "${var.environment_name}_rds_server_"
-  tags        = "${module.label.tags}"
+  tags        = "${module.security_group_label.tags}"
 }
 
 resource "aws_security_group" "rds_client" {
   vpc_id      = "${aws_vpc.main.id}"
   name_prefix = "${var.environment_name}_rds_client_"
-  tags        = "${module.label.tags}"
+  tags        = "${module.security_group_label.tags}"
 }
 
 resource "aws_security_group_rule" "allow_from_client" {
