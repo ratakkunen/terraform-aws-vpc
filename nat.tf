@@ -3,9 +3,9 @@ resource "aws_eip" "natgw" {
   vpc = true
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-natgw-eip"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-natgw-eip"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 
@@ -14,9 +14,9 @@ resource "aws_nat_gateway" "default" {
   subnet_id     = "${aws_subnet.public.0.id}"
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-natgw"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-natgw"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 

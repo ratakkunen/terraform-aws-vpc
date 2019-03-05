@@ -3,9 +3,9 @@ resource "aws_route_table" "public" {
   vpc_id = "${aws_vpc.main.id}"
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-public-route-table"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-public-route-table"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 
@@ -14,9 +14,9 @@ resource "aws_route_table" "private" {
   vpc_id = "${aws_vpc.main.id}"
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-private-route-table"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-private-route-table"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 
@@ -25,9 +25,9 @@ resource "aws_route_table" "database" {
   vpc_id = "${aws_vpc.main.id}"
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-database-route-table"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-database-route-table"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 
@@ -63,9 +63,9 @@ resource "aws_internet_gateway" "default" {
   vpc_id = "${aws_vpc.main.id}"
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-internet-gateway"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-internet-gateway"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 
