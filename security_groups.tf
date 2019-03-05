@@ -3,9 +3,9 @@ resource "aws_security_group" "rds_server" {
   name_prefix = "${var.namespace}-${var.environment_name}-rds-server-"
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-rds-server"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-rds-server"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 
@@ -14,9 +14,9 @@ resource "aws_security_group" "rds_client" {
   name_prefix = "${var.namespace}-${var.environment_name}-rds-client-"
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-rds-client"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-rds-client"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 

@@ -4,9 +4,9 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-main-vpc"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-main-vpc"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 
@@ -15,9 +15,9 @@ resource "aws_vpc_dhcp_options" "main" {
   domain_name_servers = ["AmazonProvidedDNS"]
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-dhcp-options"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-dhcp-options"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
 
@@ -35,9 +35,9 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-public-${var.availability_zones[count.index]}"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-public-${var.availability_zones[count.index]}"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 
   lifecycle {
@@ -54,9 +54,9 @@ resource "aws_subnet" "private" {
   map_public_ip_on_launch = false
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-private-${var.availability_zones[count.index]}"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-private-${var.availability_zones[count.index]}"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 
   lifecycle {
@@ -73,9 +73,9 @@ resource "aws_subnet" "database" {
   map_public_ip_on_launch = false
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-database-${var.availability_zones[count.index]}"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-database-${var.availability_zones[count.index]}"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 
   lifecycle {

@@ -3,8 +3,8 @@ resource "aws_db_subnet_group" "main" {
   subnet_ids = ["${aws_subnet.database.*.id}"]
 
   tags {
-    name         = "${var.namespace}-${var.environment_name}-db-subnet-group"
-    namespace    = "${var.namespace}"
-    stage        = "${var.environment_name}"
+    Name         = "${var.namespace}-${var.environment_name}-db-subnet-group"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
   }
 }
