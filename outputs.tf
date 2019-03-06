@@ -22,6 +22,14 @@ output "aws_route53_zone_name" {
   value = "${aws_route53_zone.main.name}"
 }
 
+output "aws_route53_zone_id" {
+  value = "${aws_route53_zone.private.zone_id}"
+}
+
+output "aws_route53_zone_name" {
+  value = "${aws_route53_zone.private.name}"
+}
+
 output "public_route_table" {
   value = "${aws_route_table.public.id}"
 }
