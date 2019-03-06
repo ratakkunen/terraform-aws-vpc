@@ -7,3 +7,18 @@ resource "aws_route53_zone" "main" {
     Stage        = "${var.environment_name}"
   }
 }
+
+resource "aws_route53_zone" "private" {
+  name          = "${var.private_service_dns_zone_name}"
+
+  vpc {
+    vpc_id    = "${aws_vpc.main.id}"
+  }
+
+  tags {
+    Name         = "${var.namespace}-${var.environment_name}-route53-private-zone"
+    Namespace    = "${var.namespace}"
+    Stage        = "${var.environment_name}"
+  }
+  force_destroy = true
+}

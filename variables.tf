@@ -31,6 +31,10 @@ variable "service_dns_zone_name" {
   type = "string"
 }
 
+variable "private_service_dns_zone_name" {
+  type = "string"
+}
+
 variable "domain_suffix" {
   type = "string"
 }
